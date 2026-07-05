@@ -2,7 +2,7 @@ const app = new Vue({
     el: '#app',
     data() {
         return {
-            expire_step: 6 * 1000,
+            expire_step: 3 * 60 * 1000,
             hitokoto: {
                 key: 'HITOKOTO_PROPS',
                 content: 'XXXXXXXXXXXXXXXXXXXXX',
@@ -40,13 +40,15 @@ const app = new Vue({
                 console.log(this)
                 this.hitokoto.expire = hitokoto.expire;
                 this.hitokoto.content = hitokoto.content;
-                this.hitokoto.from = hitokoto.from,
-                this.hitokoto.from_who = hitokoto.from_who,
+                this.hitokoto.from = hitokoto.from;
+                this.hitokoto.from_who = hitokoto.from_who;
                 localStorage.setItem(this.hitokoto.key, JSON.stringify(hitokoto));
             })
         } else {
             this.hitokoto.expire = hitokoto.expire;
             this.hitokoto.content = hitokoto.content;
+            this.hitokoto.from = hitokoto.from;
+            this.hitokoto.from_who = hitokoto.from_who;
         }
         
     },

@@ -47,7 +47,7 @@
                 {{ this.hitokoto.content }}
             </p>
             <!-- 出处 -->
-            <p v-show="!!this.hitokoto.from_who" class="text-right text-slate-500 text-lg font-medium animate-once-fade-up delay-400">
+            <p v-show="this.hitokoto.from_who && this.hitokoto.from_who !== null" class="text-right text-slate-500 text-lg font-medium animate-once-fade-up delay-400">
                 —— {{this.hitokoto.from_who}}
             </p>
         </div>
