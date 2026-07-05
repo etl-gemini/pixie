@@ -4,8 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./js/base/vue.min.js"></script>
+    <script src="./js/base/axios.min.js"></script>
+    <script src="./js/api/index.js"></script>
+    <!-- 引入Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            /* 自定义单次入场动画，不循环 */
+            .animate-once-fade-up {
+                animation: fadeUp 1s ease-out forwards;
+                animation-iteration-count: 1;
+            }
+            .delay-200 { animation-delay: 0.2s; }
+            .delay-400 { animation-delay: 0.4s; }
+            /* 动画关键帧 */
+            @keyframes fadeUp {
+                0% { opacity: 0; transform: translateY(24px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+        }
+    </style>
+    <style>
+        window, document, #app {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-    <h2>Hello, World!</h2>
+    <div id="app" v-cloak class="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-6 py-12">
+        <!-- 固定大标题 -->
+        <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-bold text-slate-800 mb-10 text-center animate-once-fade-up">
+            人生如梦
+        </h1>
+        <!-- 卡片容器 -->
+        <div class="max-w-2xl w-full bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-slate-100 animate-once-fade-up delay-200">
+            <!-- 短句 -->
+            <p class="text-[clamp(1.25rem,3vw,1.8rem)] text-slate-700 italic text-center leading-relaxed mb-6">
+                {{ this.hitokoto.content }}
+            </p>
+            <!-- 出处 -->
+            <p v-show="!!this.hitokoto.from_who" class="text-right text-slate-500 text-lg font-medium animate-once-fade-up delay-400">
+                —— {{this.hitokoto.from_who}}
+            </p>
+        </div>
+
+        <!-- 底部小字装饰 -->
+        <p class="mt-10 text-slate-400 text-sm animate-once-fade-up delay-400 mb-60">
+            清风自来 · 静待花开
+        </p>
+    </div>
 </body>
+<script src="./js/main.js"></script>
 </html>
